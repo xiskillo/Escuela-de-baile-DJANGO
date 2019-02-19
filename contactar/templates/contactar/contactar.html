@@ -1,0 +1,44 @@
+{% extends 'nucleo/base.html' %}
+
+{% load static %}
+
+{% block title %}Contactar{% endblock %}
+
+{% block content %}
+{% load recaptcha2 %}
+
+
+
+<div class="container">
+    <div class="row mt-2">
+      <div class="col-md-3">
+
+      </div>
+        <div>
+        {% recaptcha_init %}
+            <form action="" method="POST">{% csrf_token %}
+             <h2 class="mb-6">FORMULARIO DE CONTACTO</h2>
+             <br>
+                <table>
+                    {{ form.as_table}}
+                </table>
+                <br>
+                {% if 'ok' in request.GET %}
+                    <p style="color:green"><b><i>MENSAJE ENVIADO AL ADMINISTRADOR</i></b></p>
+
+                
+                    {% endif %}
+                    <br>
+                    <br>
+                <button   class="btn btn-lg" style="background-color:green; color:rgb(255, 255, 255); width: 33.33%"  type="submit" >
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> ENVIAR
+            </button>
+                    
+            </form>
+     </div>
+
+    </div>
+    
+</div>
+      
+{% endblock %}

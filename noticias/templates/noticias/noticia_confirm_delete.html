@@ -1,0 +1,36 @@
+{% extends 'nucleo/base.html' %}
+{% load static %}
+{% block title %}Borrar Noticia{% endblock %}
+{% block content %}
+{% include 'noticias/crud/submenu.html'%}
+
+<div class="container">
+    <div class="row mt-2">
+      <div class="col-md-3">
+
+      </div>
+        <div>
+            <form action="" method="post">{% csrf_token %}
+                <p><h2>¿Estas seguro?</h2>  <button class="btn btn-lg" style="background-color:red; color:rgb(255, 255, 255); width: 75%"  type="submit">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Borrar</button></p>
+                
+                
+               
+            </form>
+            <br>
+            <a href="{% url 'noticias:noticias' %}">
+
+            <button class="btn btn-lg" style="background-color:red; color:rgb(255, 255, 255); width: 75%"  type="submit">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Cancelar
+            </button></a>
+     </div>
+
+    </div>
+</div>
+  
+
+{% endblock %}
+
+
+
+

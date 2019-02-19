@@ -1,0 +1,37 @@
+{% extends 'nucleo/base.html' %}
+
+{% load static %}
+
+{% block title %}Clases{% endblock %}
+
+{% block content %}
+
+
+ {% for aula in aulas %}
+<div class="container">
+    <div class="row mt-2">
+      <div class="col-md-7 cta-innerv text-center rounded">
+      
+        <div class="">      
+          <p style="font: normal 400 40px/35px Arial, Verdana, Sans-serif;"> <b>Aula:</b>  {{aula.nombre}} </p>
+
+          <p><img src="{{aula.foto.url}}" style="width:350px;height:350"></p>
+
+          <p style="font: normal 400 20px Arial;"><b>Fecha de la clase:</b>{{aula.fecha}} </p>
+
+          {% for profesor in aula.profesores.all %}
+          <p><b>Profesor</b>:<a href="{% url 'profesores' profesor.id %}"> {{profesor.nombre}}</a>  <br> {{profesor.telefono}} <br> {{profesor.email}} <br></p>
+          
+
+          {% endfor %}          
+           <br>
+           <p> <b>Responsable:</b>  {{aula.administrador}} </p>
+          
+           <p style="font: normal 400 25px Sans-serif"> <b>Observaciones:</b>  {{aula.observaciones}} </p>
+           <br><br><br><br>
+         </div>
+        </div>
+    </div>    
+</div>
+{% endfor %}     
+{% endblock %}
