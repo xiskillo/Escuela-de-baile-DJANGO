@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+  
+
+<head>
+    <meta charset="utf-8">    
+    <title>{% block title %}{% endblock %}</title>
+    
+    
+    {% load static %}
+    
+   
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,400i,700,700i" rel="stylesheet">    
+    <link href="{% static 'nucleo/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'nucleo/vendor/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'nucleo/css/main.css' %}" rel="stylesheet">
+ </head>
+  
+    <body style=background-color:#eff2f6;>
+     
+      <nav class="navbar navbar-expand-lg" style="background-color:#ffffff; color:rgb(93, 129, 93)" >
+        <div class="container">
+            <a href="{% url 'home' %}"class="navbar-left"><img src="{% static 'nucleo/img/flamenca.png'%}" style="height:75px; width: 75px"></a>
+          
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ned" aria-controls="ned" aria-expanded="false">
+         
+            <span class="navbar-toggler-icon"></span>
+          
+          
+          </button>
+         
+          <div class="collapse navbar-collapse" id="ned">
+           
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" style="color:red" href="{% url 'home' %}"><b>INICIO</b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" style="color:red" href="{% url 'noticias:noticias' %}"><b>NOTICIAS</b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" style="color:red" href="{% url 'clases' %}"><b>CLASES</b></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" style="color:red" href="{% url 'contactar' %}"><b>CONTACTAR</b></a>
+                  </li>
+                </ul>
+            <ul class="navbar-nav">
+
+
+            {% if not request.user.is_authenticated %} 
+              <li class="nav-item">
+                <a class="nav-link" style="color:grey" href="{% url 'login' %}">  Iniciar Sesión  </a>
+               </li>
+
+               <li class="nav-item">
+                <a class="nav-link" style="color:grey" href="{% url 'registrar' %}">  Registrar  </a>
+               </li>
+
+
+                {% else %}           
+                 <li class="nav-item">
+                <a class="nav-link" style="color:grey" href="{% url 'logout' %}">  Cerrar Sesión  </a>
+               </li>   
+                
+                  <!-- PARA COMPROBAR SI ES MIEMBRO DE STAFF, APAREZCA O NO
+                  {% if request.user.is_staff %}Administrador{% else %}Iniciar Sesión{% endif %}
+                  -->
+                                  
+
+             {% endif  %}
+                <li>
+                  <a href="/admin/">  
+                  <button type="button" class="btn btn-primary btn-sm">WEBMASTER</button>
+                  </a>
+                </li>
+                </ul>
+          </div>
+        </div>
+      </nav>
+     
+     
+      {% block content %}{% endblock %}
+          
+      
+      
+     
+      
+      
+      
+  
+      <script src="{% static 'nucleo/vendor/jquery/jquery.min.js' %}"></script>
+      <script src="{% static 'nucleo/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+      <script src="{% static 'nucleo/js/main.js' %}"></script>
+  
+  
+  
+    </body>
+</html>
